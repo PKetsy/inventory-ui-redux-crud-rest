@@ -1,8 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { signIn, signOut } from "../actions";
+import { Redirect } from 'react-router-dom'
 
 class GoogleAuth extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      redirect: false
+    }
+  }
+
   componentDidMount() {
     window.gapi.load("client:auth2", () => {
       window.gapi.client
@@ -21,6 +30,7 @@ class GoogleAuth extends React.Component {
         });
     });
   }
+
   onAuthChange = (isSignedIn) => {
     if (isSignedIn) {
       this.props.signIn(this.auth.currentUser.get().getId());
@@ -33,7 +43,9 @@ class GoogleAuth extends React.Component {
   //this prints authentication state 'on-the-fly', and is called whenever authentication status changes
 
   onSignInClick = () => {
-    this.auth.signIn();
+    this.auth.signIn().then(value => {
+      this.setState({ redirect: true })
+    });
   };
 
   onSignOutClick = () => {
@@ -61,7 +73,7 @@ class GoogleAuth extends React.Component {
   }
 
   render() {
-    return <div>{this.renderAuthButton()}</div>;
+    return this.state.redirect ? <Redirect to='/choose-options' /> : <div>{this.renderAuthButton()}</div>;
   }
 }
 
