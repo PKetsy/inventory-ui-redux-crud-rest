@@ -79,28 +79,29 @@ class CreateOrder extends React.Component {
   }
 }
 
-const validate = (formValues) => {
+const validate = formValues => {
   const errors = {};
+  const isANumber = value => value && value.match(/^[0-9]+$/)
 
-  if (!Number(formValues.Ruler)) {
+  if (!isANumber(formValues.Ruler)) {
     errors.Ruler = "You must enter numbers!";
   }
-  if (!Number(formValues.Highlighters)) {
+  if (!isANumber(formValues.Highlighters)) {
     errors.Highlighters = "You must enter numbers!";
   }
-  if (!Number(formValues.Notebooks)) {
+  if (!isANumber(formValues.Notebooks)) {
     errors.Notebooks = "You must enter numbers!";
   }
-  if (!Number(formValues.Pencils)) {
+  if (!isANumber(formValues.Pencils)) {
     errors.Pencils = "You must enter numbers!";
   }
-  if (!Number(formValues.Pens)) {
+  if (!isANumber(formValues.Pens)) {
     errors.Pens = "You must enter numbers!";
   }
-  if (!Number(formValues.StaplePacks)) {
+  if (!isANumber(formValues.StaplePacks)) {
     errors.StaplePacks = "You must enter numbers!";
   }
-  if (!Number(formValues.StickyNotePacks)) {
+  if (!isANumber(formValues.StickyNotePacks)) {
     errors.StickyNotePacks = "You must enter numbers!";
   }
   return errors;
