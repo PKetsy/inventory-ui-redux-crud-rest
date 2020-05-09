@@ -26,15 +26,17 @@ class OrderList extends React.Component {
   }
 
   renderList() {
-    return this.props.orders.map((orders) => {
-      return (
-        <div className="item" key={orders.id}>
-          {this.renderAdmin(orders)}
+    return this.props.orders.map(order => (
+        <div className="item" key={order.id}>
+          {this.renderAdmin(order)}
           <i className="large middle aligned icon pencil" />
-          <div className="content">{orders.Pencils}</div>
+          <div className="content">Pencils: {order.Pencils}</div>
+          <div className="content">Highlighters: {order.Highlighters}</div>
+          <div className="content">Notebooks: {order.Notebooks}</div>
+          <div className="content">Sticky Note Packs: {order.StickyNotePacks}</div>
         </div>
-      );
-    });
+      )
+    )
   }
 
   renderCreate() {
