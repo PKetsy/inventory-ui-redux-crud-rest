@@ -15,11 +15,11 @@ const CheckoutPage = () => {
         </h3>
         <br></br>
       </div>
-      <Link to="/pages/StreamCreate">
+      <Link to="/stream-create">
         <button className="ui primary button">Update your cart</button>
       </Link>
       <button className="ui negative button">Delete entire order </button>
-      <Link to="/pages/FinalPage">
+      <Link to="/final-page">
         <button className="ui positive button">
           Checkout, and dispense my items
         </button>{" "}

@@ -37,7 +37,7 @@ export const createOrder = (formValues) => async (dispatch, getState) => {
   //using response.data because we only care about the information returned inside the request
   // after the response from axios, the response object has information inside of it
 
-  createBrowserHistory.push("/pages/CheckoutPage");
+  createBrowserHistory.push("/checkout-page");
   //programmatic navigation to get user back to OrderList after installing {createBrowserRouter}
 };
 

@@ -14,7 +14,7 @@ class OrderList extends React.Component {
       return (
         <div className="right floated content">
           <Link
-            to={`/pages/EditOrder/${orders.id}`}
+            to={`/edit-order/${orders.id}`}
             className="ui button primary"
           >
             Edit
@@ -41,7 +41,7 @@ class OrderList extends React.Component {
     if (this.props.isSignedIn) {
       return (
         <div style={{ textAlign: "right" }}>
-          <Link to="/pages/CreateOrder" className="ui button primary">
+          <Link to="/create-order" className="ui button primary">
             Create an order
           </Link>
         </div>
