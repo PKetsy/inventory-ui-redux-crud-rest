@@ -54,13 +54,15 @@ export const fetchOrder = (id) => async (dispatch) => {
 };
 
 export const editOrder = (id, formValues) => async (dispatch) => {
-  const response = await orders.put(`/orders/${id}`, formValues);
+  const response = await orders.patch(`/orders/${id}`, formValues);
 
   dispatch({ type: EDIT_ORDER, payload: response.data });
+  createBrowserHistory.push("/checkout-page");
 };
 
 export const deleteOrder = (id) => async (dispatch) => {
   await orders.delete(`/orders/${id}`);
 
   dispatch({ type: DELETE_ORDER, payload: id });
+  createBrowserHistory.push("/order-list");
 };

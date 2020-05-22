@@ -12,38 +12,46 @@ class OrderList extends React.Component {
   renderAdmin(orders) {
     if (orders.userId === this.props.currentUserId) {
       return (
-        <div className="right floated content">
-          <Link
-            to={`/edit-order/${orders.id}`}
-            className="ui button primary"
-          >
+        <div className='right floated content'>
+          <Link to={`/edit-order/${orders.id}`} className='ui button primary'>
             Edit
           </Link>
-          <button className="ui button negative">Delete Order</button>
+          <Link
+            to={`/delete-order/${orders.id}`}
+            className='ui button negative'
+          >
+            Delete Order
+          </Link>
         </div>
       );
     }
   }
 
   renderList() {
-    return this.props.orders.map(order => (
-        <div className="item" key={order.id}>
-          {this.renderAdmin(order)}
-          <i className="large middle aligned icon pencil" />
-          <div className="content">Pencils: {order.Pencils}</div>
-          <div className="content">Highlighters: {order.Highlighters}</div>
-          <div className="content">Notebooks: {order.Notebooks}</div>
-          <div className="content">Sticky Note Packs: {order.StickyNotePacks}</div>
+    return this.props.orders.map((order) => (
+      <div className='item' key={order.id}>
+        {this.renderAdmin(order)}
+        <i className='large middle aligned icon pencil' />
+        <br></br>
+        <div className='content'>Rulers: {order.Rulers}</div>
+        <div className='content'>Highlighters: {order.Highlighters}</div>
+        <div className='content'>Notebooks: {order.Notebooks}</div>
+        <div className='content'>Pencils: {order.Pencils}</div>
+        <div className='content'>Pens: {order.Pens}</div>
+        <div className='content'>Staple Packs: {order.StaplePacks}</div>
+        <div className='content'>
+          {" "}
+          Sticky Note Packs: {order.StickyNotePacks}
         </div>
-      )
-    )
+      </div>
+    ));
   }
 
   renderCreate() {
     if (this.props.isSignedIn) {
       return (
         <div style={{ textAlign: "right" }}>
-          <Link to="/create-order" className="ui button primary">
+          <Link to='/create-order' className='ui button primary'>
             Create an order
           </Link>
         </div>
@@ -55,7 +63,7 @@ class OrderList extends React.Component {
     return (
       <div>
         <h2>Orders</h2>
-        <div className="ui celled list">{this.renderList()}</div>
+        <div className='ui celled list'>{this.renderList()}</div>
         {this.renderCreate()}
       </div>
     );

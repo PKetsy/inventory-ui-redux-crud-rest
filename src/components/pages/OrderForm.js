@@ -1,12 +1,14 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 
+//the following components will reuse this form: CreateOrder & EditOrder
+
 class OrderForm extends React.Component {
   renderError({ error, touched }) {
     if (touched && error) {
       return (
-        <div className="ui error message">
-          <div className="header">{error}</div>
+        <div className='ui error message'>
+          <div className='header'>{error}</div>
         </div>
       );
     }
@@ -17,7 +19,7 @@ class OrderForm extends React.Component {
     return (
       <div className={className}>
         <label>{label}</label>
-        <input {...input} autoComplete="off" />
+        <input {...input} autoComplete='off' />
         {this.renderError(meta)}
       </div>
     );
@@ -28,51 +30,51 @@ class OrderForm extends React.Component {
   onSubmit = (formValues) => {
     this.props.onSubmit(formValues);
   };
-  //now a parent component is passing a callback called onSubmit which is called with whatever
-  // values come out of the form.
+  // OrderForm does not need to call any action creator, but instead a parent component that
+  // calls some kind of action creator.
 
   render() {
     return (
       <form
         onSubmit={this.props.handleSubmit(this.onSubmit)}
-        className="ui form error"
+        className='ui form error'
       >
         <Field
-          name="ruler"
+          name='Rulers'
           component={this.renderInput}
-          label="How many 12inch rulers do you need?"
+          label='How many 12inch rulers do you need?'
         />
         <Field
-          name="Highlighters"
+          name='Highlighters'
           component={this.renderInput}
-          label="How many Highlighters do you need?"
+          label='How many Highlighters do you need?'
         />
         <Field
-          name="Notebooks"
+          name='Notebooks'
           component={this.renderInput}
-          label="How many Notebooks do you need?"
+          label='How many Notebooks do you need?'
         />
         <Field
-          name="Pencils"
+          name='Pencils'
           component={this.renderInput}
-          label="How many Pencils do you need?"
+          label='How many Pencils do you need?'
         />
         <Field
-          name="Pens"
+          name='Pens'
           component={this.renderInput}
-          label="How many Pens do you need?"
+          label='How many Pens do you need?'
         />
         <Field
-          name="StaplePacks"
+          name='StaplePacks'
           component={this.renderInput}
-          label="How many Staple Packs do you need?"
+          label='How many Staple Packs do you need?'
         />
         <Field
-          name="StickyNotePacks"
+          name='StickyNotePacks'
           component={this.renderInput}
-          label="How many Sticky Note Packs do you need?"
+          label='How many Sticky Note Packs do you need?'
         />
-        <button className="ui button primary"> Submit Order </button>
+        <button className='ui button primary'> Submit Order </button>
       </form>
     );
   }
@@ -80,35 +82,38 @@ class OrderForm extends React.Component {
 
 const validate = (formValues) => {
   const errors = {};
+  const isANumber = (value) => value && value.match(/^[0-9]+$/);
 
-  if (!Number(formValues.Ruler)) {
-    errors.Ruler = "You must enter numbers!";
+  if (!isANumber(formValues.Rulers)) {
+    errors.Rulers = "You must enter numbers!";
   }
-  if (!Number(formValues.Highlighters)) {
+  if (!isANumber(formValues.Highlighters)) {
     errors.Highlighters = "You must enter numbers!";
   }
-  if (!Number(formValues.Notebooks)) {
+  if (!isANumber(formValues.Notebooks)) {
     errors.Notebooks = "You must enter numbers!";
   }
-  if (!Number(formValues.Pencils)) {
+  if (!isANumber(formValues.Pencils)) {
     errors.Pencils = "You must enter numbers!";
   }
-  if (!Number(formValues.Pens)) {
+  if (!isANumber(formValues.Pens)) {
     errors.Pens = "You must enter numbers!";
   }
-  if (!Number(formValues.StaplePacks)) {
+  if (!isANumber(formValues.StaplePacks)) {
     errors.StaplePacks = "You must enter numbers!";
   }
-  if (!Number(formValues.StickyNotePacks)) {
+  if (!isANumber(formValues.StickyNotePacks)) {
     errors.StickyNotePacks = "You must enter numbers!";
   }
   return errors;
 };
 
+// When user submits order, we will validate inputs.  if they are valid we will call onSubmit.
+//  Said which onSubmit call then calls our createOrder, which runs the createOrder action creator
+//   which then makes a request to our API server to create a new order.
+//     REST-ful conventions because we are making a post request to './orders'
+
 export default reduxForm({
   form: "orderForm",
   validate: validate,
 })(OrderForm);
-
-//OrderForm does not need to call any action creator, but instead a parent componenet that
-// calls some action creator

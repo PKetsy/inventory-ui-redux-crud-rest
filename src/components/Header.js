@@ -9,7 +9,7 @@ const Header = () => {
         Check past orders here
       </Link>
       <div className="right menu"></div>
-      <Link to="/" className="item">
+      <Link to="/choose-options" className="item">
         Goes to Homepage
       </Link>
       <GoogleAuth />
