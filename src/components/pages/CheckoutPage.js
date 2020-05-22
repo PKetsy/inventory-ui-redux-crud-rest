@@ -6,7 +6,7 @@ import createBrowserHistory from "../../history";
 
 import { fetchOrder, deleteOrder } from "../../actions";
 
-const CheckoutPage = () => {
+const CheckoutPage = ({ id = 1 }) => {
   return (
     <div className='ui container'>
       <div>
@@ -14,10 +14,10 @@ const CheckoutPage = () => {
         <h3> Please select one of the following options.</h3>
         <br></br>
       </div>
-      <Link to='/edit-order/:id'>
+      <Link to={`/edit-order/${id}`}>
         <button className='ui primary button'>Update your cart</button>
       </Link>
-      <Link to='/delete-order/:id'>
+      <Link to={`/edit-order/${id}`}>
         <button className='ui negative button'>Delete entire order </button>
       </Link>
       <Link to='/final-page'>
