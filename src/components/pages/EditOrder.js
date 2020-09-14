@@ -7,10 +7,12 @@ import OrderForm from "./OrderForm";
 class EditOrder extends React.Component {
   componentDidMount() {
     this.props.fetchOrder(this.props.match.params.id);
+    //calling action creator
   }
 
   onSubmit = (formValues) => {
     this.props.editOrder(this.props.match.params.id, formValues);
+    //calling action creator
   };
 
   render() {

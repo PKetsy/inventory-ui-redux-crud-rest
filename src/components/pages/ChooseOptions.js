@@ -4,14 +4,19 @@ import { Link } from "react-router-dom";
 const ChooseOptions = (userId) => (
   <div className="ui container">
     <div>
-      <center><h1>Hello, welcome to the store!</h1></center>
+      <center>
+        <h1>Hello, welcome to the Office Supply vending machine!</h1>
+      </center>
     </div>
     <br></br>
     <center>
-      <h3>To begin, click 'Create an order' and enter values as numbers.  Once you are satisfied with your order, click on 'Checkout'.</h3>
+      <h3>
+        To begin, click 'Create an order' and enter values as numbers. Once you
+        are satisfied with your order, click on 'Checkout'.
+      </h3>
     </center>
     <br></br>
-    <Link to ="/create-order">
+    <Link to="/create-order">
       <button className="ui primary button">Create an order</button>
     </Link>
   </div>

@@ -1,16 +1,19 @@
 import React from "react";
 import GoogleAuth from "../GoogleAuth";
+import { Link } from "react-router-dom";
 
 const FinalPage = () => {
   return (
-    <div className='ui container'>
+    <div className="ui container">
       <div>
         <h1>
-          Thank you UserId! Please make sure to grab all dispensed items!, and
-          make sure to sign out!
+          All finished! Please make sure to grab all dispensed items, and don't
+          forget to sign out!
         </h1>
       </div>
-      <GoogleAuth />
+      <Link to={`/`}>
+        <GoogleAuth />
+      </Link>
     </div>
   );
 };

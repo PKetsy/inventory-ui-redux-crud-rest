@@ -12,15 +12,16 @@ class DeleteOrder extends React.Component {
 
   renderActions() {
     const id = this.props.match.params.id;
+    //pre assignment to line 19
     return (
       <React.Fragment>
         <button
           onClick={() => this.props.deleteOrder(id)}
-          className='ui button negative'
+          className="ui button negative"
         >
           Delete
         </button>
-        <Link to='/order-list' className='ui button'>
+        <Link to="/order-list" className="ui button">
           Cancel
         </Link>
       </React.Fragment>
@@ -37,7 +38,7 @@ class DeleteOrder extends React.Component {
   render() {
     return (
       <DeleteOrderModal
-        title='Delete Order'
+        title="Delete Order"
         content={this.renderContent()}
         actions={this.renderActions()}
         onDismiss={() => createBrowserHistory.push("/order-list")}

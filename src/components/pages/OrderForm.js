@@ -1,5 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+// reduxForm above pretty much makes sure we call some action creator, and get form data into our component.
 
 //the following components will reuse this form: CreateOrder & EditOrder
 
@@ -7,19 +8,21 @@ class OrderForm extends React.Component {
   renderError({ error, touched }) {
     if (touched && error) {
       return (
-        <div className='ui error message'>
-          <div className='header'>{error}</div>
+        <div className="ui error message">
+          <div className="header">{error}</div>
         </div>
       );
     }
   }
 
   renderInput = ({ input, label, meta }) => {
+    //meta contains the error we are looking to display
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    // this prevents the error from showing up by default
     return (
       <div className={className}>
         <label>{label}</label>
-        <input {...input} autoComplete='off' />
+        <input {...input} autoComplete="off" />
         {this.renderError(meta)}
       </div>
     );
@@ -37,44 +40,47 @@ class OrderForm extends React.Component {
     return (
       <form
         onSubmit={this.props.handleSubmit(this.onSubmit)}
-        className='ui form error'
+        className="ui form error"
+        //this className is what allows the actual error message to be displayed in the label
       >
         <Field
-          name='Rulers'
+          name="Rulers"
           component={this.renderInput}
-          label='How many 12inch rulers do you need?'
+          //component is what returns the element to be shown on screen.
+          label="How many 12inch rulers do you need?"
+          // label: is passed into the renderInput function (line 18), because by default <Field> has no idea what to do with it
         />
         <Field
-          name='Highlighters'
+          name="Highlighters"
           component={this.renderInput}
-          label='How many Highlighters do you need?'
+          label="How many Highlighters do you need?"
         />
         <Field
-          name='Notebooks'
+          name="Notebooks"
           component={this.renderInput}
-          label='How many Notebooks do you need?'
+          label="How many Notebooks do you need?"
         />
         <Field
-          name='Pencils'
+          name="Pencils"
           component={this.renderInput}
-          label='How many Pencils do you need?'
+          label="How many Pencils do you need?"
         />
         <Field
-          name='Pens'
+          name="Pens"
           component={this.renderInput}
-          label='How many Pens do you need?'
+          label="How many Pens do you need?"
         />
         <Field
-          name='StaplePacks'
+          name="StaplePacks"
           component={this.renderInput}
-          label='How many Staple Packs do you need?'
+          label="How many Staple Packs do you need?"
         />
         <Field
-          name='StickyNotePacks'
+          name="StickyNotePacks"
           component={this.renderInput}
-          label='How many Sticky Note Packs do you need?'
+          label="How many Sticky Note Packs do you need?"
         />
-        <button className='ui button primary'> Submit Order </button>
+        <button className="ui button primary"> Submit Order </button>
       </form>
     );
   }

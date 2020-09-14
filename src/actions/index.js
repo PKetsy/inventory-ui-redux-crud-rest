@@ -29,7 +29,7 @@ export const signOut = () => {
 export const createOrder = (formValues) => async (dispatch, getState) => {
   const { userId } = getState().auth;
   const response = await orders.post("/orders", { ...formValues, userId });
-  //vid 254 explains
+
   // action creators can have handles on them (const response=await), we would then want to dispatch
   // an action with a payload of the order.  A reducer we will create will allow us to save that
 

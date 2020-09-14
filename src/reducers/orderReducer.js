@@ -15,6 +15,7 @@ export default (state = {}, action) => {
     //mapKeys takes list of orders from API, makes them into objects, and takes the key of the id
     case FETCH_ORDER:
       return { ...state, [action.payload.id]: action.payload };
+    //this is key interperlation
     case CREATE_ORDER:
       return { ...state, [action.payload.id]: action.payload };
     case EDIT_ORDER:
